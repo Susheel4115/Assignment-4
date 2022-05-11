@@ -2,10 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const routes = require("./routes/routes");
-
 const app = express();
 //express middleware for res body in json
 app.use(express.json());
+
+//setting the template enginee
+
+app.set("view engine", "ejs");
 
 //dotenv for port
 dotenv.config();
@@ -26,10 +29,11 @@ db.once("connected", () => {
 });
 
 //attaching port
-app.listen(process.env.PORT, () => {
-  console.log(`server is running and lisening to port ${process.env.PORT}`);
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`server is running and lisening to port ${port}`);
 });
 
 //creating routes
 
-app.use("/api", routes);
+app.use("/", routes);

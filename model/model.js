@@ -6,8 +6,14 @@ const Schema = new mongoose.Schema({
     type: String,
   },
   email: {
-    required: true,
     type: String,
+    required: true,
+    match: /.+\@.+\..+/,
+    unique: true,
+  },
+  isPromoted: {
+    type: Boolean,
+    default: null,
   },
 });
 
