@@ -6,7 +6,8 @@ const app = express();
 const user = require("./routes/user");
 
 //express middleware for res body in json
-app.use(express.json());
+
+// app.use(express.json());
 
 //setting the template enginee
 
@@ -42,4 +43,4 @@ app.use("/", routes);
 
 //submitting form
 
-app.use("/", user);
+// app.use("/", user);

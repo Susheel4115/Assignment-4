@@ -4,20 +4,29 @@ const Model = require("../model/model");
 
 //get method for start page
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   // res.status(200).json("Hello you're in homepage");
-  res.render("index", {});
+  const form = await Model.find({});
+
+  res.render("index", { form });
+  // res.send(form);
+});
+
+router.get("/form", async (req, res) => {
+  const form = await Model.find();
+  res.render("form", { form });
 });
 
 //post
-router.post("/post", async (req, res) => {
+router.post("/form", async (req, res) => {
   const data = new Model({
     name: req.body.name,
     email: req.body.email,
   });
   try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave);
+    // const dataToSave = await data.save();
+    // res.status(200).json(dataToSave);
+    res.redirect("/");
     return;
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -31,7 +40,8 @@ router.post("/post", async (req, res) => {
 router.get("/getAll", async (req, res) => {
   try {
     const data = await Model.find();
-    res.json(data);
+    // res.json(data);
+    res.send("hello");
     return;
   } catch (error) {
     res.status(500).json({ message: error.message });
