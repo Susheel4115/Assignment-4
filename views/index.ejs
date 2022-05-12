@@ -11,5 +11,22 @@
     <div class="main">
       <h2>Assignment-4</h2>
     </div>
+    <div class="table">
+      <table style="width: 100%">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+        <% for(let user of form) {%>
+
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+        </tr>
+
+        <% }%>
+      </table>
+    </div>
+    <a href="http://localhost:3000/form">Add user</a>
   </body>
 </html>

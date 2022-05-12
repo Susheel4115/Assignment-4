@@ -1,4 +1,3 @@
-const { name } = require("ejs");
 const express = require("express");
 const router = express.Router();
 const Model = require("../model/model");
@@ -10,19 +9,6 @@ router.get("/", (req, res) => {
   res.render("index", {});
 });
 
-router.get("/form", function (req, res) {
-  // var mascots = [
-  //   { name: "Sammy", organization: "DigitalOcean", birth_year: 2012 },
-  //   { name: "Tux", organization: "Linux", birth_year: 1996 },
-  //   { name: "Moby Dock", organization: "Docker", birth_year: 2013 },
-  // ];
-  // var tagline =
-  //   "No programming concept is complete without a cute animal mascot.";
-
-  res.render("form", {
-    name: "Susheel",
-  });
-});
 //post
 router.post("/post", async (req, res) => {
   const data = new Model({

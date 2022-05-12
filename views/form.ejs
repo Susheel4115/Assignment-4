@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=h1, initial-scale=1.0" />
-    <%- include('./styles.ejs'); %>
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="main">
-      <h2>Assignment-4</h2>
-    </div>
-
-    <div class="form">
-      <form method="POST">
-        <button id="" type="submit">Select</button>
-      </form>
-    </div>
-  </body>
-</html>
+<style>
+  body {
+    background-color: lightblue;
+    margin: auto;
+    padding: 4%;
+  }
+  .label {
+    font-size: x-large;
+  }
+  input {
+    width: 20%;
+  }
+  .flex {
+    display: flex;
+    flex-direction: column;
+  }
+  .btn {
+    margin-top: 1%;
+    width: 10%;
+    cursor: pointer;
+  }
+</style>
+<h1>Form Page</h1>
+<form action="/form" method="post" enctype="x-www-form-urlencoded">
+  <div class="flex">
+    <label for="name" class="label">Name:</label>
+    <input type="text" />
+    <label for="name" class="label">Email:</label>
+    <input type="text" />
+    <input type="button" value="submit" class="btn" />
+  </div>
+</form>

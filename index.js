@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const routes = require("./routes/routes");
 const app = express();
+const user = require("./routes/user");
+
 //express middleware for res body in json
 app.use(express.json());
 
@@ -37,3 +39,7 @@ app.listen(port, () => {
 //creating routes
 
 app.use("/", routes);
+
+//submitting form
+
+app.use("/", user);
