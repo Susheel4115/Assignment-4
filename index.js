@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const routes = require("./routes/routes");
 const app = express();
-const user = require("./routes/user");
-
+// const user = require("./routes/user");
+const bodyParser = require("body-parser");
 //express middleware for res body in json
 
 // app.use(express.json());
@@ -37,6 +37,10 @@ app.listen(port, () => {
   console.log(`server is running and lisening to port ${port}`);
 });
 
+//bodyparser
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 //creating routes
 
 app.use("/", routes);

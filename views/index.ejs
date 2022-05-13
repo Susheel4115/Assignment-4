@@ -17,7 +17,7 @@
           <th>Name</th>
           <th>Email</th>
         </tr>
-        <% for(let user of form) {%>
+        <% for(let user of data) {%>
 
         <tr>
           <td><%= user.name %></td>
@@ -27,6 +27,6 @@
         <% }%>
       </table>
     </div>
-    <a href="http://localhost:3000/form">Add user</a>
+    <a href="http://localhost:3000/forms">Add user</a>
   </body>
 </html>
