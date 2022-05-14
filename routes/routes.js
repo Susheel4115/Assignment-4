@@ -9,37 +9,41 @@ router.get("/", async (req, res) => {
   const form = await Model.find({});
 
   res.render("index", { form });
-  // res.send(form);
+  // res.send("hello");
 });
 
 router.get("/form", async (req, res) => {
-  const form = await Model.find();
-  res.render("form", { form });
+  // const form = await Model.find();
+  res.render("form");
 });
 
 //post
-router.post("/form", (req, res) => {
-  // const data = res.body;
-  // console.log(data);
-  console.log(req.body);
-  try {
-    // const dataToSave = await data.save();
-    // res.status(200).json(dataToSave);
-    res.redirect("/");
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-  //   res.send("Post method");
+router.post("/post/form", async (req, res) => {
+  // console.log(req.body);
+  // const user = new Model({
+  //   name: req.body.name,
+  //   // email: req.body.email,
+  // });
+  // console.log(user);
+  const newUser = req.body;
+  console.log(newUser);
+  await Model.create(newUser);
+  res.redirect("/");
+  //   try {
+  //     await user.save();
+  //     res.redirect("/");
+  //   } catch (err) {
+  //     res.send(err);
+  //   }
+  // });
 });
-
 //get all records from db
 
 router.get("/getAll", async (req, res) => {
   try {
-    const data = await Model.find();
+    const data = await Model.find({});
     // res.json(data);
-    res.send("hello");
-    return;
+    res.send(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
     return;
@@ -80,15 +84,18 @@ router.patch("/update/:id", async (req, res) => {
 });
 
 //delete a ID using delete
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/del/user/:id", async (req, res) => {
   // res.send("Deleted using ID");
-  try {
-    const id = req.params.id;
-    const data = await Model.findByIdAndDelete(id);
-    res.send(`${data.name}- this guy has been kicked off from DB`);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+  // try {
+  //   const id = req.params.id;
+  //   const data = await Model.findByIdAndDelete(id);
+  //   res.redirect("/");
+  // } catch (error) {
+  //   res.status(400).json({ message: error.message });
+  const id = req.params.id;
+  console.log(id);
+  await Model.findByIdAndDelete(id);
+  res.redirect("/");
 });
 
 //put method
@@ -101,30 +108,4 @@ router.put("/user/:id", async (req, res) => {
   }
 });
 
-//get method
-
-// router.get("/", async (req, res) => {
-//   const users = await Model.find({});
-//   res.render("index.ejs", { users });
-// });
-
-// //get method for form
-
-// router.get("/forms", (req, res) => {
-//   res.render("form.ejs");
-// });
-
-// router.post("/form", async (req, res) => {
-//   const data = res.body;
-//   console.log(data);
-
-//   try {
-//     const dataToSave = await data.save();
-//     // res.status(200).json(dataToSave);
-//     res.render("index", { dataToSave });
-//   } catch (error) {
-//     res.status(400).json({ message: error.message });
-//   }
-//   //   res.send("Post method");
-// });
 module.exports = router;

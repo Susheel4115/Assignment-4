@@ -12,21 +12,26 @@
       <h2>Assignment-4</h2>
     </div>
     <div class="table">
-      <table style="width: 100%">
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-        <% for(let user of data) {%>
+      <ol>
+        <% for(let user of form) {%>
+        <li>
+          <%= user.name %> <br /><%= user.email %>
+          <form method="POST" action="/user/<%= form._id %>?_method=PUT">
+            <button id="edit-<%= form.name %>" type="submit">
+              promoted/demoted
+            </button>
+          </form>
+          <form
+            method="POST"
+            action="/del/user/:id<%= form._id %>?_method=DELETE"
+          >
+            <button id="delete-<%= form.name %>">Delete</button>
+          </form>
 
-        <tr>
-          <td><%= user.name %></td>
-          <td><%= user.email %></td>
-        </tr>
-
-        <% }%>
-      </table>
+          <% }%>
+        </li>
+      </ol>
     </div>
-    <a href="http://localhost:3000/forms">Add user</a>
+    <a href="http://localhost:3000/form">Add user</a>
   </body>
 </html>
