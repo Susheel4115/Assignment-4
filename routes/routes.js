@@ -84,7 +84,7 @@ router.patch("/update/:id", async (req, res) => {
 });
 
 //delete a ID using delete
-router.delete("/del/user/:id", async (req, res) => {
+router.delete("/post/form/users/:id", async (req, res) => {
   // res.send("Deleted using ID");
   // try {
   //   const id = req.params.id;
@@ -100,12 +100,15 @@ router.delete("/del/user/:id", async (req, res) => {
 
 //put method
 
-router.put("/user/:id", async (req, res) => {
-  try {
-    res.send("in the put method");
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
+router.put("/post/form/users/:id", async (req, res) => {
+  const id = req.params.id;
+  await Model.findById(id, (isPromoted) => {});
+  res.redirect("/");
+  // try {
+  //   res.send("in the put method");
+  // } catch (error) {
+  //   res.status(404).json({ message: error.message });
+  // }
 });
 
 module.exports = router;

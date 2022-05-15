@@ -15,22 +15,27 @@
       <ol>
         <% for(let user of form) {%>
         <li>
-          <%= user.name %> <br /><%= user.email %>
-          <form method="POST" action="/user/<%= form._id %>?_method=PUT">
-            <button id="edit-<%= form.name %>" type="submit">
+         <h1> <%= user.name %></h1> <br /><%= user.email %>
+          <div class="buttons">
+          <form
+            method="POST"
+            action="/post/form/user/<%= user._id %>?_method=PUT"
+          >
+            <button class="promoted" id="edit-<%= form.name %>" type="submit">
               promoted/demoted
             </button>
           </form>
           <form
             method="POST"
-            action="/del/user/:id<%= form._id %>?_method=DELETE"
+            action="/post/form/users/<%= user._id %>?_method=DELETE"
           >
-            <button id="delete-<%= form.name %>">Delete</button>
+            <button class="deleted" id="delete-<%= user.name %>">Delete</button>
           </form>
 
           <% }%>
         </li>
       </ol>
+      </div>
     </div>
     <a href="http://localhost:3000/form">Add user</a>
   </body>
