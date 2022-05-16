@@ -11,30 +11,32 @@
     <div class="main">
       <h2>Assignment-4</h2>
     </div>
-    <div class="table">
-      <ol>
-        <% for(let user of form) {%>
-        <li>
-         <h1> <%= user.name %></h1> <br /><%= user.email %>
-          <div class="buttons">
-          <form
-            method="POST"
-            action="/post/form/user/<%= user._id %>?_method=PUT"
-          >
-            <button class="promoted" id="edit-<%= form.name %>" type="submit">
-              promoted/demoted
-            </button>
-          </form>
-          <form
-            method="POST"
-            action="/post/form/users/<%= user._id %>?_method=DELETE"
-          >
-            <button class="deleted" id="delete-<%= user.name %>">Delete</button>
-          </form>
+    <div class="hero">
+      <% for(let person of form) {%>
+       <% if(person.isPromoted === null ){%>
+      <div class="person-details1">
+        <h1><%=person.name%></h1>
+        <p><%=person.email%></p>
+      </div>
+      <%}%> <% if(person.isPromoted === true ){%>
+      <div class="person-details2">
+        <h1><%=person.name%></h1>
+        <p><%=person.email%></p>
+      </div>
+      <%}%> <% if(person.isPromoted === false ){%>
+      <div class="person-details3">
+        <h1><%=person.name%></h1>
+        <p><%=person.email%></p>
+      </div>
+      <%}%>
+      <form method="POST" action="/post/form/users/<%= person._id %>?_method=PUT">
+        <button id="edit-<%= person.name %>" class="promoted" type="submit">promoted/unpromoted</button>
+    </form> 
+<form method="POST" action="/post/form/users/<%= person._id %>?_method=DELETE">
+        <button class="deleted" id="delete-<%= person.name %>">Delete</button>
+    </form>   
 
-          <% }%>
-        </li>
-      </ol>
+        <% }%>
       </div>
     </div>
     <a href="http://localhost:3000/form">Add user</a>
