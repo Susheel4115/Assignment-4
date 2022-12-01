@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const app = express();
 // const user = require("./routes/user");
 // const bodyParser = require("body-parser");
-//express middleware for res body in json
+//express middleware for res body in json.
 
 // app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
